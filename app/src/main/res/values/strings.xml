@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FintonicTest</string>
+    <string name="no_superheroes">No superheroes to show</string>
+    <string name="pic_description">Image of the superhero</string>
 </resources>

@@ -1,7 +1,7 @@
 package com.rukiasoft.fintonictest.sheroeslist.views
 
 import com.rukiasoft.amaristest.model.CustomLiveData
-import com.rukiasoft.fintonictest.model.SuperHeroe
+import com.rukiasoft.fintonictest.model.SuperHero
 import com.rukiasoft.fintonictest.sheroeslist.lifecycleobservers.SuperHeroListLifecycleObserver
 
 /**
@@ -11,8 +11,8 @@ interface SuperHeroListView {
 
     fun addLifecycleObserver(observer: SuperHeroListLifecycleObserver)
 
-    fun getLiveSuperHeroes(): CustomLiveData<MutableList<SuperHeroe>>
+    fun getLiveSuperHeroes(): CustomLiveData<MutableList<SuperHero>>
 
-    fun setSuperHeroesInView(superHeroes: List<SuperHeroe>)
+    fun setSuperHeroesInView(superHeroes: List<SuperHero>)
 
 }

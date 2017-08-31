@@ -1,7 +1,7 @@
 package com.rukiasoft.fintonictest.sheroeslist.presenters
 
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
-import com.rukiasoft.fintonictest.model.SuperHeroe
+import com.rukiasoft.fintonictest.model.SuperHero
 import com.rukiasoft.fintonictest.network.logic.NetworkManager
 import com.rukiasoft.fintonictest.safe
 import com.rukiasoft.fintonictest.sheroeslist.livedataobservers.MyLivedataObserver
@@ -37,10 +37,13 @@ class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakRefer
         }
     }
 
-    override fun handleChangesInObservedSuperHeroes(superheroes: MutableList<SuperHeroe>) {
+    override fun handleChangesInObservedSuperHeroes(superheroes: MutableList<SuperHero>) {
         mView.safe {
             mView.get()!!.setSuperHeroesInView(superheroes)
         }
     }
 
+    override fun superHeroClicked(superHero: SuperHero) {
+        log.d(this, "pulsado: " + superHero.name)
+    }
 }

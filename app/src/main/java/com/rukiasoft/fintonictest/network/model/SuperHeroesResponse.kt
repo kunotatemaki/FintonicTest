@@ -1,6 +1,5 @@
 package com.rukiasoft.fintonictest.network.model
 
-import com.google.gson.JsonArray
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -11,6 +10,6 @@ class SuperHeroesResponse{
 
     @SerializedName("superheroes")
     @Expose
-    var superheroes: List<SuperHeroeElementRespose>? = null
+    var superheroes: List<SuperHeroElementRespose>? = null
 
 }

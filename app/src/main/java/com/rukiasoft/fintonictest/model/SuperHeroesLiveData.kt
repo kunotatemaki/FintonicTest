@@ -4,7 +4,7 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import com.rukiasoft.fintonictest.model.SuperHeroe
+import com.rukiasoft.fintonictest.model.SuperHero
 import com.rukiasoft.fintonictest.sheroeslist.livedataobservers.MyLivedataObserver
 import javax.inject.Inject
 
@@ -12,20 +12,20 @@ import javax.inject.Inject
 /**
  * Created by Roll on 24/8/17.
  */
-class SuperHeroesLiveData @Inject constructor(): MutableLiveData<MutableList<SuperHeroe>>(), CustomLiveData<MutableList<SuperHeroe>> {
+class SuperHeroesLiveData @Inject constructor(): MutableLiveData<MutableList<SuperHero>>(), CustomLiveData<MutableList<SuperHero>> {
 
-    override fun setLivedataValue(value: MutableList<SuperHeroe>) {
+    override fun setLivedataValue(value: MutableList<SuperHero>) {
         this.value = value
     }
 
-    override fun getLivedataValue(): MutableList<SuperHeroe>? {
+    override fun getLivedataValue(): MutableList<SuperHero>? {
         return this.value
     }
 
     override fun addObserverToLivedata(lifecycleRegistryOwner: LifecycleRegistryOwner, observer: MyLivedataObserver) {
 
         this.observe(lifecycleRegistryOwner as LifecycleOwner,
-                Observer<MutableList<SuperHeroe>> { SuperHeroes -> observer.handleChangesInObservedSuperHeroes(SuperHeroes!!) })
+                Observer<MutableList<SuperHero>> { SuperHeroes -> observer.handleChangesInObservedSuperHeroes(SuperHeroes!!) })
 
     }
 }

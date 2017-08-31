@@ -2,7 +2,7 @@ package com.rukiasoft.fintonictest.network.logic
 
 import com.rukiasoft.amaristest.model.CustomLiveData
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
-import com.rukiasoft.fintonictest.model.SuperHeroe
+import com.rukiasoft.fintonictest.model.SuperHero
 import com.rukiasoft.fintonictest.network.endpoints.FintonicEndpoints
 import com.rukiasoft.fintonictest.network.model.SuperHeroesResponse
 import com.rukiasoft.fintonictest.utils.FintonicConstants
@@ -26,7 +26,7 @@ class NetworkManagerAndroidImpl @Inject constructor(): NetworkManager {
     @Inject
     lateinit var log : LoggerHelper
 
-    override fun getSuperHeroes(superHeroes: CustomLiveData<MutableList<SuperHeroe>>) {
+    override fun getSuperHeroes(superHeroes: CustomLiveData<MutableList<SuperHero>>) {
 
         val fintonicEndpoints = retrofit.create(FintonicEndpoints::class.java)
 
@@ -34,12 +34,12 @@ class NetworkManagerAndroidImpl @Inject constructor(): NetworkManager {
         myCall.enqueue(object : Callback<SuperHeroesResponse> {
             override fun onResponse(call: Call<SuperHeroesResponse>?, response: Response<SuperHeroesResponse>?) {
                 if (response?.isSuccessful as Boolean) {
-                    val list : MutableList<SuperHeroe> = arrayListOf()
+                    val list : MutableList<SuperHero> = arrayListOf()
                     //map photos to observable value
                     response.body()
                             ?.superheroes
                             ?.mapTo(list) {
-                        SuperHeroe(it)
+                        SuperHero(it)
                     }
                     superHeroes.setLivedataValue(list)
 
