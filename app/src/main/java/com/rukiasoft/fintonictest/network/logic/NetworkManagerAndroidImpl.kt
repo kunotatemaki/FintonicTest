@@ -48,13 +48,13 @@ class NetworkManagerAndroidImpl @Inject constructor(): NetworkManager {
                 } else {
 
                     log.d(this, "respuesta vacía")
-                    TODO("leer de la base de datos")
+                    superHeroes.setLivedataValue(arrayListOf())
                 }
             }
 
             override fun onFailure(call: Call<SuperHeroesResponse>?, t: Throwable?) {
                 log.d(this, t?.message.toString())
-                TODO("leer de la base de datos")
+                superHeroes.setLivedataValue(arrayListOf())
 
             }
         })
