@@ -8,6 +8,7 @@ import com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenterA
 import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroListView
 import dagger.Module
 import dagger.Provides
+import java.lang.ref.WeakReference
 
 /**
  * Created by Roll on 31/8/17.
@@ -22,9 +23,10 @@ class SuperHeroListModule(private var mView: SuperHeroListView) {
     }
 
     @Provides
-    fun providesSuperHeroListView(): SuperHeroListView{
-        return mView
+    fun providesSuperHeroListView(): WeakReference<SuperHeroListView>{
+        return WeakReference(mView)
     }
+
 
     @Provides
     fun providesSuperHeroListLifecycleObserver(observer: SuperHeroListLifecycleObserverAndroidImpl): SuperHeroListLifecycleObserver{
