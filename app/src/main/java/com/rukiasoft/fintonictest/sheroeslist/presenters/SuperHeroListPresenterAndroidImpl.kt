@@ -1,7 +1,9 @@
 package com.rukiasoft.fintonictest.sheroeslist.presenters
 
+import javax.inject.Inject
+
 /**
  * Created by Roll on 31/8/17.
  */
-class SuperHeroListPresenterAndroidImpl : SuperHeroListPresenter {
+class SuperHeroListPresenterAndroidImpl @Inject constructor(): SuperHeroListPresenter {
 }
