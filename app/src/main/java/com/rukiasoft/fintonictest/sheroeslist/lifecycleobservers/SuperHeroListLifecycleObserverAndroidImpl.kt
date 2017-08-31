@@ -46,7 +46,7 @@ class SuperHeroListLifecycleObserverAndroidImpl @Inject constructor(val mView: W
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun actionInOnResume() {
         log.d(this, "observer's onstart")
-        //presenter.loadAccounts()
+        presenter.loadSuperHeroes()
     }
 
 

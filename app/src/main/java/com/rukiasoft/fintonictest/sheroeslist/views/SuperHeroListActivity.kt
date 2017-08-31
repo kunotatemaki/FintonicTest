@@ -30,8 +30,7 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
     @Inject
     lateinit var log: LoggerHelper
 
-    @Inject
-    lateinit var network: NetworkManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +40,6 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
                 .inject(this)
         //endregion
         setContentView(R.layout.activity_main)
-
-        network.getSuperHeroes(getLiveSuperHeroes())
 
     }
 
@@ -56,6 +53,10 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
 
     override fun getLiveSuperHeroes(): CustomLiveData<MutableList<SuperHeroe>> {
         return ViewModelProviders.of(this).get(SuperHeroListViewModel::class.java).superheroes
+    }
+
+    override fun setSuperHeroesInView(superHeroes: List<SuperHeroe>) {
+        log.d(this, "show superheroes in view")
     }
 
     //endregion

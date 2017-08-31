@@ -7,6 +7,6 @@ import com.rukiasoft.fintonictest.model.SuperHeroe
  */
 interface MyLivedataObserver {
 
-    fun handleChangesInObservedSuperHeroes(accounts: MutableList<SuperHeroe>)
+    fun handleChangesInObservedSuperHeroes(superheroes: MutableList<SuperHeroe>)
 
 }

@@ -12,4 +12,7 @@ interface SuperHeroListView {
     fun addLifecycleObserver(observer: SuperHeroListLifecycleObserver)
 
     fun getLiveSuperHeroes(): CustomLiveData<MutableList<SuperHeroe>>
+
+    fun setSuperHeroesInView(superHeroes: List<SuperHeroe>)
+
 }

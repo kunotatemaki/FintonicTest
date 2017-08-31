@@ -1,8 +1,9 @@
 package com.rukiasoft.fintonictest.sheroeslist.presenters
 
-import android.arch.lifecycle.LifecycleObserver
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
 import com.rukiasoft.fintonictest.model.SuperHeroe
+import com.rukiasoft.fintonictest.network.logic.NetworkManager
+import com.rukiasoft.fintonictest.safe
 import com.rukiasoft.fintonictest.sheroeslist.livedataobservers.MyLivedataObserver
 import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroListView
 import java.lang.ref.WeakReference
@@ -17,11 +18,29 @@ class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakRefer
     @Inject
     lateinit var log: LoggerHelper
 
+    @Inject
+    lateinit var network: NetworkManager
 
 
+    override fun loadSuperHeroes() {
+        mView.safe {
+            val myView = mView.get()!!
 
-    override fun handleChangesInObservedSuperHeroes(accounts: MutableList<SuperHeroe>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            if(myView.getLiveSuperHeroes().getLivedataValue()?.isEmpty() == false){
+                //no hace falta forzar a la vista a cargar los datos de la caché, porque
+                //el livedata notificará a su observador (this) de su último valor cuando se suscriba
+                //así que se llamará a handle... y se actualizará ahí
+                return@safe
+            }else{
+                network.getSuperHeroes(myView.getLiveSuperHeroes())
+            }
+        }
+    }
+
+    override fun handleChangesInObservedSuperHeroes(superheroes: MutableList<SuperHeroe>) {
+        mView.safe {
+            mView.get()!!.setSuperHeroesInView(superheroes)
+        }
     }
 
 }

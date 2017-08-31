@@ -1,12 +1,9 @@
 package com.rukiasoft.fintonictest.network.logic
 
-import android.service.autofill.FillResponse
-import com.google.gson.Gson
 import com.rukiasoft.amaristest.model.CustomLiveData
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
 import com.rukiasoft.fintonictest.model.SuperHeroe
 import com.rukiasoft.fintonictest.network.endpoints.FintonicEndpoints
-import com.rukiasoft.fintonictest.network.model.SuperHeroeElementRespose
 import com.rukiasoft.fintonictest.network.model.SuperHeroesResponse
 import com.rukiasoft.fintonictest.utils.FintonicConstants
 import retrofit2.Call
@@ -45,6 +42,7 @@ class NetworkManagerAndroidImpl @Inject constructor(): NetworkManager {
                         SuperHeroe(it)
                     }
                     superHeroes.setLivedataValue(list)
+
                 } else {
 
                     log.d(this, "respuesta vacía")
