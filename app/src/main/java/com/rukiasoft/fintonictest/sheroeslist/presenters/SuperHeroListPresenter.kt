@@ -7,7 +7,4 @@ import android.view.View
  */
 interface SuperHeroListPresenter {
 
-    fun setView(view:View)
-    fun prueba()
-    fun detachViewFromPresenter()
 }

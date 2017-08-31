@@ -1,8 +1,7 @@
 package com.rukiasoft.fintonictest.sheroeslist.views
 
-import android.support.v7.app.AppCompatActivity
+import android.arch.lifecycle.LifecycleObserver
 import android.os.Bundle
-import android.view.View
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
 import com.rukiasoft.fintonictest.FintonicApp
 import com.rukiasoft.fintonictest.R
@@ -10,12 +9,12 @@ import com.rukiasoft.fintonictest.dependencyinjection.modules.SuperHeroListModul
 import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
 import com.rukiasoft.fintonictest.sheroeslist.lifecycleobservers.SuperHeroListLifecycleObserver
 import com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenter
-import kotlinx.android.synthetic.main.activity_main.*
+import com.rukiasoft.fintonictest.utils.ui.BaseActivity
 import javax.inject.Inject
 
 
 @CustomScopes.ActivityScope
-class SuperHeroListActivity : AppCompatActivity(), SuperHeroListView {
+class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
 
     @Inject
     lateinit var presenter: SuperHeroListPresenter
@@ -32,9 +31,20 @@ class SuperHeroListActivity : AppCompatActivity(), SuperHeroListView {
         //region DEPENDENCY INJECTION
         (application as FintonicApp).mComponent.getSuperHeroListSubcomponent(SuperHeroListModule(this))
                 .inject(this)
-
+        //endregion
         setContentView(R.layout.activity_main)
 
 
     }
+
+
+    //region SUPERHEROLISTVIEW INTERFACE
+    override fun addLifecycleObserver(observer: SuperHeroListLifecycleObserver) {
+        if(observer is LifecycleObserver){
+            lifecycle.addObserver(observer)
+        }
+    }
+
+
+    //endregion
 }
