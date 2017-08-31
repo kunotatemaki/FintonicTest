@@ -15,4 +15,11 @@ interface SuperHeroListView {
 
     fun setSuperHeroesInView(superHeroes: List<SuperHero>)
 
+    fun showEmptyList(message: String)
+
+    fun hideEmptyList()
+
+    fun showLoader()
+
+    fun hideLoader()
 }

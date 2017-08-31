@@ -10,11 +10,13 @@ import com.rukiasoft.fintonictest.resources.ResourcesManager
 import com.rukiasoft.fintonictest.resources.ResourcesManagerAndroidImpl
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * Created by Roll on 31/8/17.
  */
 @Module
+@Singleton
 class FintonicAppModule(private val application: FintonicApp) {
 
     @Provides

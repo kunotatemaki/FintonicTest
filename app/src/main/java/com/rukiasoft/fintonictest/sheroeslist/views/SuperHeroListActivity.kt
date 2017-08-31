@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.rukiasoft.amaristest.model.CustomLiveData
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
 import com.rukiasoft.fintonictest.FintonicApp
 import com.rukiasoft.fintonictest.R
 import com.rukiasoft.fintonictest.databinding.ActivityMainBinding
-import com.rukiasoft.fintonictest.databinding.SuperheroItemBinding
 import com.rukiasoft.fintonictest.dependencyinjection.modules.SuperHeroListModule
 import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
 import com.rukiasoft.fintonictest.model.SuperHero
@@ -57,6 +57,8 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         //endregion
 
+        mBinding.showMessage = ViewModelProviders.of(this).get(SuperHeroListViewModel::class.java).showingEmpty
+
         //set the mAdapter for the recycler view
         mRecyclerView = mBinding.superheroList
 
@@ -89,6 +91,28 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
         adapter.superHeroes.addAll(superHeroes)
         adapter.notifyDataSetChanged()
     }
+
+    override fun hideEmptyList() {
+        ViewModelProviders.of(this).get(SuperHeroListViewModel::class.java).showingEmpty = false
+        mBinding.errorMessage.visibility = View.INVISIBLE
+    }
+
+    override fun showEmptyList(message: String) {
+        ViewModelProviders.of(this).get(SuperHeroListViewModel::class.java).showingEmpty = true
+        mBinding.errorMessage.visibility = View.VISIBLE
+
+    }
+
+    override fun showLoader() {
+        //hide error message because I'm gonna load data
+        hideEmptyList()
+        mBinding.progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideLoader() {
+        mBinding.progressBar.visibility = View.INVISIBLE
+    }
+
 
     //endregion
 }

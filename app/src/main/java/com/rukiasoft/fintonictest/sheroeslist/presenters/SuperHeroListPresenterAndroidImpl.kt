@@ -1,8 +1,11 @@
 package com.rukiasoft.fintonictest.sheroeslist.presenters
 
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
+import com.rukiasoft.fintonictest.R
+import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
 import com.rukiasoft.fintonictest.model.SuperHero
 import com.rukiasoft.fintonictest.network.logic.NetworkManager
+import com.rukiasoft.fintonictest.resources.ResourcesManager
 import com.rukiasoft.fintonictest.safe
 import com.rukiasoft.fintonictest.sheroeslist.livedataobservers.MyLivedataObserver
 import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroListView
@@ -12,6 +15,7 @@ import javax.inject.Inject
 /**
  * Created by Roll on 31/8/17.
  */
+@CustomScopes.ActivityScope
 class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakReference<SuperHeroListView>)
     : SuperHeroListPresenter, MyLivedataObserver {
 
@@ -20,6 +24,9 @@ class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakRefer
 
     @Inject
     lateinit var network: NetworkManager
+
+    @Inject
+    lateinit var resources: ResourcesManager
 
 
     override fun loadSuperHeroes() {
@@ -32,6 +39,7 @@ class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakRefer
                 //así que se llamará a handle... y se actualizará ahí
                 return@safe
             }else{
+                mView.get()!!.showLoader()
                 network.getSuperHeroes(myView.getLiveSuperHeroes())
             }
         }
@@ -39,7 +47,13 @@ class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakRefer
 
     override fun handleChangesInObservedSuperHeroes(superheroes: MutableList<SuperHero>) {
         mView.safe {
-            mView.get()!!.setSuperHeroesInView(superheroes)
+            val myView = mView.get()!!
+            myView.hideLoader()
+            if(superheroes.size == 0){
+                myView.showEmptyList(resources.getString(R.string.no_superheroes))
+            }else {
+                mView.get()!!.setSuperHeroesInView(superheroes)
+            }
         }
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.rukiasoft.fintonictest.R
 import com.rukiasoft.fintonictest.databinding.SuperheroItemBinding
+import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
 import com.rukiasoft.fintonictest.model.SuperHero
 import com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenter
 import com.rukiasoft.fintonictest.sheroeslist.viewholders.SuperHeroListViewHolder
@@ -15,6 +16,7 @@ import javax.inject.Inject
 /**
  * Created by Roll on 31/8/17.
  */
+@CustomScopes.ActivityScope
 class SuperHeroListAdapter @Inject constructor(val presenter: SuperHeroListPresenter):
         RecyclerView.Adapter<SuperHeroListViewHolder>() {
 

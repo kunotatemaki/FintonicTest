@@ -12,13 +12,15 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by Roll on 31/8/17.
  */
+@Singleton
 class NetworkManagerAndroidImpl @Inject constructor(): NetworkManager {
 
-    val retrofit : Retrofit = Retrofit.Builder()
+    private val retrofit : Retrofit = Retrofit.Builder()
             .baseUrl(FintonicConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

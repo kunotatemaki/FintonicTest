@@ -6,6 +6,7 @@ import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.OnLifecycleEvent
 import android.view.View
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
+import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
 import com.rukiasoft.fintonictest.safe
 import com.rukiasoft.fintonictest.sheroeslist.livedataobservers.MyLivedataObserver
 import com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenter
@@ -16,6 +17,7 @@ import javax.inject.Inject
 /**
  * Created by Roll on 31/8/17.
  */
+@CustomScopes.ActivityScope
 class SuperHeroListLifecycleObserverAndroidImpl @Inject constructor(val mView: WeakReference<SuperHeroListView>)
     : SuperHeroListLifecycleObserver, LifecycleObserver {
 
