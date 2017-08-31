@@ -10,6 +10,7 @@ import com.rukiasoft.fintonictest.R
 import com.rukiasoft.fintonictest.dependencyinjection.modules.SuperHeroListModule
 import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
 import com.rukiasoft.fintonictest.model.SuperHeroe
+import com.rukiasoft.fintonictest.network.logic.NetworkManager
 import com.rukiasoft.fintonictest.sheroeslist.lifecycleobservers.SuperHeroListLifecycleObserver
 import com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenter
 import com.rukiasoft.fintonictest.sheroeslist.viewmodels.SuperHeroListViewModel
@@ -29,6 +30,9 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
     @Inject
     lateinit var log: LoggerHelper
 
+    @Inject
+    lateinit var network: NetworkManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +42,7 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
         //endregion
         setContentView(R.layout.activity_main)
 
+        network.getSuperHeroes(getLiveSuperHeroes())
 
     }
 

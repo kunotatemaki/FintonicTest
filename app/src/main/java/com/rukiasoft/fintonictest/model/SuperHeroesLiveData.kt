@@ -23,7 +23,7 @@ class SuperHeroesLiveData @Inject constructor(): MutableLiveData<MutableList<Sup
         return this.value
     }
 
-    override fun addObserverToLivedata(view: View, observer: MyLivedataObserver) {
+    override fun addObserverToLivedata(view: LifecycleRegistryOwner, observer: MyLivedataObserver) {
 
         if (view is LifecycleRegistryOwner) {
             this.observe(view as LifecycleOwner,

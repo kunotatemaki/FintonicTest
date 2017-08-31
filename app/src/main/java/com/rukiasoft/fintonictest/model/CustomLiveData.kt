@@ -1,5 +1,7 @@
 package com.rukiasoft.amaristest.model
 
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.LifecycleRegistryOwner
 import android.view.View
 import com.rukiasoft.fintonictest.sheroeslist.livedataobservers.MyLivedataObserver
 
@@ -13,6 +15,6 @@ interface CustomLiveData<T> {
 
     fun getLivedataValue(): T?
 
-    fun addObserverToLivedata(view: View, observer: MyLivedataObserver)
+    fun addObserverToLivedata(lifecycleRegistryOwner: LifecycleRegistryOwner, observer: MyLivedataObserver)
 
 }

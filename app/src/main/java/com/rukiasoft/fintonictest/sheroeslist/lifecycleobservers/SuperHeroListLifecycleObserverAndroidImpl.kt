@@ -2,6 +2,7 @@ package com.rukiasoft.fintonictest.sheroeslist.lifecycleobservers
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.OnLifecycleEvent
 import android.view.View
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
@@ -37,7 +38,7 @@ class SuperHeroListLifecycleObserverAndroidImpl @Inject constructor(val mView: W
         //force presenter to observe data (repos and user)
         if (presenter is MyLivedataObserver) {
             mView.safe {
-                mView.get()!!.getLiveSuperHeroes().addObserverToLivedata(mView.get()!! as View, presenter as MyLivedataObserver)
+                mView.get()!!.getLiveSuperHeroes().addObserverToLivedata(mView.get()!! as LifecycleRegistryOwner, presenter as MyLivedataObserver)
             }
         }
     }
