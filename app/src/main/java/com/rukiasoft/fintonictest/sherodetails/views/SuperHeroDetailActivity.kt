@@ -37,6 +37,7 @@ class SuperHeroDetailActivity : BaseActivity(), SuperHeroDetailView {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_super_hero_detail, GlideBindingComponent())
         val superHero = intent.getParcelableExtra<SuperHero>(FintonicConstants.SUPERHERO)
         mBinding.superhero = superHero
+        mBinding.superheroDetailsContainer?.superhero = superHero
         setToolbar(toolbar, true)
 
     }
