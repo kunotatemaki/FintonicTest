@@ -6,5 +6,6 @@ package com.rukiasoft.fintonictest.utils
 object FintonicConstants {
 
     val BASE_URL : String = "https://api.myjson.com/"
+    val SUPERHERO: String = "superhero"
 
 }

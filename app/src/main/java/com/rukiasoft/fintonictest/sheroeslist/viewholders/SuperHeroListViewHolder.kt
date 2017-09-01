@@ -12,8 +12,8 @@ import com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenter
 class SuperHeroListViewHolder (val binding: SuperheroItemBinding): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(superhero: SuperHero, presenter: SuperHeroListPresenter) {
-        binding.setVariable(BR.superhero, superhero)
-        binding.setVariable(BR.presenter, presenter)
+        binding.superhero = superhero
+        binding.presenter = presenter
         binding.executePendingBindings()
     }
 }

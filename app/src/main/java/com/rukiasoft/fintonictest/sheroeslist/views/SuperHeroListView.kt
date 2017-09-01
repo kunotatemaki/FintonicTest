@@ -1,5 +1,6 @@
 package com.rukiasoft.fintonictest.sheroeslist.views
 
+import android.view.View
 import com.rukiasoft.amaristest.model.CustomLiveData
 import com.rukiasoft.fintonictest.model.SuperHero
 import com.rukiasoft.fintonictest.sheroeslist.lifecycleobservers.SuperHeroListLifecycleObserver
@@ -22,4 +23,6 @@ interface SuperHeroListView {
     fun showLoader()
 
     fun hideLoader()
+
+    fun showSuperHeroDetails(superHeroView: SuperHeroView, superhero: SuperHero)
 }

@@ -10,14 +10,26 @@ import com.bumptech.glide.request.RequestOptions
  */
 class GlideBindingAdapters {
 
-    @BindingAdapter("app:image")
-    fun setImageUrl(view: ImageView, url: String?) {
+    @BindingAdapter("app:imageList")
+    fun setImageUrlInList(view: ImageView, url: String?) {
         //circle images
         url?.let {
             Glide.with(view.context)
                     .load(url)
                     .apply(RequestOptions()
                             .circleCrop())
+                    .into(view)
+        }
+    }
+
+    @BindingAdapter("app:imageDetail")
+    fun setImageUrlInDetails(view: ImageView, url: String?) {
+        //circle images
+        url?.let {
+            Glide.with(view.context)
+                    .load(url)
+                    .apply(RequestOptions()
+                            .centerCrop())
                     .into(view)
         }
     }

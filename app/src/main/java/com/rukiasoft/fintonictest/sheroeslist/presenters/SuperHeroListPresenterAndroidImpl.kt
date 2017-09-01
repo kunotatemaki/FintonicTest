@@ -9,6 +9,7 @@ import com.rukiasoft.fintonictest.resources.ResourcesManager
 import com.rukiasoft.fintonictest.safe
 import com.rukiasoft.fintonictest.sheroeslist.livedataobservers.MyLivedataObserver
 import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroListView
+import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroView
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 
@@ -57,7 +58,10 @@ class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakRefer
         }
     }
 
-    override fun superHeroClicked(superHero: SuperHero) {
+    override fun superHeroClicked(superHeroView: SuperHeroView, superHero: SuperHero) {
         log.d(this, "pulsado: " + superHero.name)
+        mView.safe {
+            mView.get()!!.showSuperHeroDetails(superHeroView, superHero)
+        }
     }
 }

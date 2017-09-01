@@ -5,12 +5,16 @@
     <data>
         <import type="com.rukiasoft.fintonictest.model.SuperHero"/>
         <import type="com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenter"/>
+        <import type="com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroView"/>
         <variable
             name="superhero"
             type="SuperHero"/>
         <variable
             name="presenter"
             type="SuperHeroListPresenter"/>
+        <variable
+            name="pic"
+            type="SuperHeroView"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -26,20 +30,21 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?selectableItemBackground"
-        android:onClick="@{()->presenter.superHeroClicked(superhero)}"
+        android:onClick="@{()->presenter.superHeroClicked(avatar, superhero)}"
 
         >
 
-        <ImageView
+        <com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroViewAndroidImpl
             android:id="@+id/avatar"
             android:layout_width="@dimen/pic_size"
             android:layout_height="@dimen/pic_size"
             android:contentDescription="@string/pic_description"
-            app:image="@{superhero.photo}"
+            app:imageList="@{superhero.photo}"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/vertical_margin"
             android:layout_marginStart="@dimen/horizontal_margin"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:transitionName="@string/activity_image_trans"/>
 
         <TextView
             android:id="@+id/superhero_name"

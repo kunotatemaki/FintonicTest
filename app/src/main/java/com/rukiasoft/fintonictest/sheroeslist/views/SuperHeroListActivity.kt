@@ -2,6 +2,7 @@ package com.rukiasoft.fintonictest.sheroeslist.views
 
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -16,12 +17,17 @@ import com.rukiasoft.fintonictest.databinding.ActivityMainBinding
 import com.rukiasoft.fintonictest.dependencyinjection.modules.SuperHeroListModule
 import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
 import com.rukiasoft.fintonictest.model.SuperHero
+import com.rukiasoft.fintonictest.sherodetails.views.SuperHeroDetailActivity
 import com.rukiasoft.fintonictest.sheroeslist.adapters.SuperHeroListAdapter
 import com.rukiasoft.fintonictest.sheroeslist.lifecycleobservers.SuperHeroListLifecycleObserver
 import com.rukiasoft.fintonictest.sheroeslist.presenters.SuperHeroListPresenter
 import com.rukiasoft.fintonictest.sheroeslist.viewmodels.SuperHeroListViewModel
+import com.rukiasoft.fintonictest.utils.FintonicConstants
 import com.rukiasoft.fintonictest.utils.ui.BaseActivity
 import javax.inject.Inject
+import android.support.v4.app.ActivityOptionsCompat
+
+
 
 
 @CustomScopes.ActivityScope
@@ -113,6 +119,17 @@ class SuperHeroListActivity : BaseActivity(), SuperHeroListView {
         mBinding.progressBar.visibility = View.INVISIBLE
     }
 
+    override fun showSuperHeroDetails(superHeroView: SuperHeroView, superhero: SuperHero) {
+        val intent = Intent(this, SuperHeroDetailActivity::class.java)
+        intent.putExtra(FintonicConstants.SUPERHERO, superhero)
+        //trainsition
+        if(superHeroView is View) {
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, superHeroView, getString(R.string.activity_image_trans))
+            startActivity(intent, options.toBundle())
+        }else {
+            startActivity(intent)
+        }
+    }
 
     //endregion
 }

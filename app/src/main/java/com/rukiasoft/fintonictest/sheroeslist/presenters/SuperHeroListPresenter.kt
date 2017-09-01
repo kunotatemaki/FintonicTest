@@ -1,7 +1,7 @@
 package com.rukiasoft.fintonictest.sheroeslist.presenters
 
-import android.view.View
 import com.rukiasoft.fintonictest.model.SuperHero
+import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroView
 
 /**
  * Created by Roll on 31/8/17.
@@ -9,6 +9,6 @@ import com.rukiasoft.fintonictest.model.SuperHero
 interface SuperHeroListPresenter {
     fun loadSuperHeroes()
 
-    fun superHeroClicked(superHero: SuperHero)
+    fun superHeroClicked(superHeroView: SuperHeroView, superHero: SuperHero)
 
 }

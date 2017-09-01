@@ -1,7 +1,7 @@
 package com.rukiasoft.fintonictest.dependencyinjection.modules
 
 import android.content.Context
-import com.rukiasoft.amaristest.utils.logger.AndroidLogHelperImpl
+import com.rukiasoft.amaristest.utils.logger.AndroidLoggerHelperImpl
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
 import com.rukiasoft.fintonictest.FintonicApp
 import com.rukiasoft.fintonictest.network.logic.NetworkManager
@@ -35,7 +35,7 @@ class FintonicAppModule(private val application: FintonicApp) {
     }
 
     @Provides
-    fun providesLogHelper(logger: AndroidLogHelperImpl): LoggerHelper {
+    fun providesLogHelper(logger: AndroidLoggerHelperImpl): LoggerHelper {
         return logger
     }
 
