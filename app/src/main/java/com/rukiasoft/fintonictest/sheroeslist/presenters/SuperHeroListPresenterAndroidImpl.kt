@@ -1,5 +1,6 @@
 package com.rukiasoft.fintonictest.sheroeslist.presenters
 
+import android.support.annotation.VisibleForTesting
 import com.rukiasoft.amaristest.utils.logger.LoggerHelper
 import com.rukiasoft.fintonictest.R
 import com.rukiasoft.fintonictest.dependencyinjection.scopes.CustomScopes
@@ -12,6 +13,7 @@ import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroListView
 import com.rukiasoft.fintonictest.sheroeslist.views.SuperHeroView
 import java.lang.ref.WeakReference
 import javax.inject.Inject
+import kotlin.reflect.jvm.internal.impl.types.checker.NewCapturedType
 
 /**
  * Created by Roll on 31/8/17.
@@ -28,6 +30,15 @@ class SuperHeroListPresenterAndroidImpl @Inject constructor(val mView: WeakRefer
 
     @Inject
     lateinit var resources: ResourcesManager
+
+    @VisibleForTesting
+    constructor(resources: ResourcesManager, log: LoggerHelper, mView: WeakReference<SuperHeroListView>,
+                network: NetworkManager) : this(mView) {
+        this.resources = resources
+        this.log = log
+        this.network = network
+
+    }
 
 
     override fun loadSuperHeroes() {
